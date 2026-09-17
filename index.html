@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Elements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid;
+        }
+        .ui-element-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        .ui-element-block h3 {
+            margin-top: 0;
+        }
+        .description {
+            font-size: 0.9em;
+            color: black;
+            margin-bottom: 15px;
+        }
+        .element-wrapper {
+            background-color: ghostwhite;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid;
+            background-color: ghostwhite;
+            border-radius: 4px 4px 0 0;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 16px;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .tab button:hover { background-color: #ddd; }
+        .tabcontent {
+            display: none;
+            padding: 15px;
+            border: 1px solid;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            background-color: white;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed;
+            color: deepskyblue;
+            cursor: help;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85em;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .data-grid {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-grid th, .data-grid td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .data-grid th {
+            background-color: #007bff;
+            color: white;
+        }
+        .data-grid tr:nth-child(even) { background-color: floralwhite; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>UI Elements</h2>
+
+    <div class="ui-element-block">
+        <h3>1. Radiobutton</h3>
+        <p class="description">Дозволяє користувачеві вибрати лише один варіант із набору опцій.</p>
+        <div class="element-wrapper">
+            <input type="radio" id="radio1" name="options" value="option1" checked>
+            <label for="radio1">Варіант 1</label><br>
+            <input type="radio" id="radio2" name="options" value="option2">
+            <label for="radio2">Варіант 2</label>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>2. Checkbox</h3>
+        <p class="description">Дозволяє користувачеві вибрати один, кілька або жодного варіанту з набору.</p>
+        <div class="element-wrapper">
+            <input type="checkbox" id="check1" name="check1" value="Bike">
+            <label for="check1"> Я маю велосипед</label><br>
+            <input type="checkbox" id="check2" name="check2" value="Car" checked>
+            <label for="check2"> Я маю автомобіль</label>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>3. Text input</h3>
+        <p class="description">Однорядкове поле для введення текстових даних користувачем.</p>
+        <div class="element-wrapper">
+            <input type="text" placeholder="Введіть ваш текст сюди..." style="width: 250px; padding: 5px;">
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>4. Tabs</h3>
+        <p class="description">Вкладки дозволяють організувати та перемикатися між різними розділами контенту в межах однієї області без перезавантаження сторінки.</p>
+        <div class="element-wrapper" style="background-color: transparent; padding: 0;">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">Вкладка 1</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab2')">Вкладка 2</button>
+            </div>
+            <div id="Tab1" class="tabcontent">
+                <p>Вміст першої вкладки.</p>
+            </div>
+            <div id="Tab2" class="tabcontent">
+                <p>Вміст другої вкладки.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>5. Button</h3>
+        <p class="description">Інтерактивний елемент, який ініціює виконання певної дії після натискання.</p>
+        <div class="element-wrapper">
+            <button id="actionButton"
+                    onclick=alert("Натиснуто");
+                    style="padding: 10px 20px; background-color: green; color: white; border: none; border-radius: 4px; cursor: pointer; transition: 0.3s;">
+                Натисни мене
+            </button>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>6. Text label</h3>
+        <p class="description">Описує елемент керування (наприклад, поле введення), пояснюючи користувачу, яку саме інформацію слід ввести або обрати.</p>
+        <div class="element-wrapper">
+            <label style="font-weight: bold; color: red;">Текстова мітка для поля:</label>
+            <input type="text" placeholder="Поле до мітки">
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>7. Link</h3>
+        <p class="description">Дозволяє користувачеві переходити на іншу веб-сторінку, файл або певну частину поточної сторінки.</p>
+        <div class="element-wrapper">
+            <a href="#" style="color: deepskyblue; text-decoration: none; font-weight: bold;">Гіперпосилання (Link)</a>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>8. Tooltip</h3>
+        <p class="description">Надає додаткову контекстну інформацію або пояснення, коли користувач наводить курсор миші на певний елемент.</p>
+        <div class="element-wrapper">
+            Наведіть курсор на це слово:
+            <div class="tooltip">Підказка
+                <span class="tooltiptext">Це додаткова інформація, яка з'являється при наведенні</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>9. Dropdown list</h3>
+        <p class="description">Дозволяє користувачеві вибрати одне значення з прихованого списку, що розгортається після натискання.</p>
+        <div class="element-wrapper">
+            <select style="padding: 5px; width: 200px;">
+                <option value="1">Опція 1</option>
+                <option value="2">Опція 2</option>
+                <option value="3">Опція 3</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="ui-element-block">
+        <h3>10. Data grid</h3>
+        <p class="description">Відображає структуровані дані у форматі таблиці. Використовується для організації та перегляду великих обсягів інформації.</p>
+        <div class="element-wrapper">
+            <table class="data-grid">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ім'я</th>
+                    <th>Роль</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Олександр</td>
+                    <td>Адміністратор</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Марія</td>
+                    <td>Користувач</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Іван</td>
+                    <td>Модератор</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("defaultOpen").click();
+    });
+</script>
+
+</body>
+</html>
